@@ -1,17 +1,20 @@
 <template>
   <!--<Pokemon />-->
-  <PokemonPage />
+  <!--<PokemonPage />-->
+  <Ip />
 </template>
 
 <script>
 import Pokemon from "./components/Pokemon.vue";
 import PokemonPage from "./components/PokemonPage.vue";
+import Ip from "./components/Ip.vue";
 
 export default {
   name: "App",
   components: {
     Pokemon,
     PokemonPage,
+    Ip
   },
 };
 </script>
