@@ -1,8 +1,10 @@
 <template>
-  <h1>¿Cual es este Pokemon?</h1>
-
-  <PokemonPicture :pokemonId="1" :mostrarPokemon="false" />
-  <PokemonOptions :pokemons="pokemonArr" />
+  <h1 v-if="!pokemonCorrecto">Espere por favor.....</h1>
+  <div v-else>
+    <h1>¿Cual es este Pokemon?</h1>
+    <PokemonPicture :pokemonId="pokemonCorrecto.id" :mostrarPokemon="mostrarPokemon" />
+    <PokemonOptions :pokemons="pokemonArr" />
+  </div>
 </template>
 
 <script>
@@ -18,6 +20,9 @@ export default {
   data() {
     return {
       pokemonArr: [],
+      pokemonCorrecto: null,
+      mostrarPokemon: false,
+
     };
   },
   components: {
@@ -27,6 +32,12 @@ export default {
   methods: {
     async obtenerPokemonsArreglo() {
       this.pokemonArr = await getPokemonOptions();
+      const numeroAleatorio = Math.floor(Math.random() * 4);
+      console.log(numeroAleatorio);
+
+      this.pokemonCorrecto = this.pokemonArr[numeroAleatorio];
+      console.log(this.pokemonCorrecto);
+      //Importar varios metodos de un archivo
       console.log("Impresion desde el PAGE");
       console.log(this.pokemonArr);
     },
